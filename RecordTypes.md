@@ -2,6 +2,11 @@
 
 _as of April 2021, C#9 / .Net 5.0_
 
+## Official docs
+
+- https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record
+- https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/records
+
 ## What are they?
 
 - the `record` keyword adds another way to define types (like `class`, `interface`, ...)
@@ -29,7 +34,7 @@ _as of April 2021, C#9 / .Net 5.0_
   var newRecord = oldRecord with { Value = 42 };
   ```
 - **be careful**: members, which are reference types, will be a shallow copy :exclamation:
-- this includes nested record types
+- this includes nested record types :exclamation:
 
 ### `init`-only property setters
 
@@ -51,8 +56,10 @@ _as of April 2021, C#9 / .Net 5.0_
 
 - records support inheritance, but with some restrictions
 - records can inherit from other records and from interfaces
-- records can't inherit from classes
-- also classes can't inherit from records
+- records can be split into partials
+
+- records can't inherit from classes :zap:
+- also classes can't inherit from records :zap:
 
 Also:
 
@@ -69,9 +76,8 @@ Also:
   - the types match
   - and all property and field values match
     - values for value types
-    - references for reference types
-
-- for reference types other than records: equality means identity
+    - values for record types
+    - references for other reference types
 
 ## "Regular" record types
 
@@ -98,10 +104,11 @@ public record RecordType
 
   - equality comparison
   - `with` operator
-  - **primary constructor whose parameters match the positional parameters on the record declaration** (but no object initializer, I didn't manage to create one)
+  - **primary constructor whose parameters match the positional parameters on the record declaration**
+    (but no object initializer, I didn't manage to create one)
   - **public `init` properties for all parameters on the record declaration**
   - **property deconstruction**
-  - protected copy-constructor
+  - (protected copy-constructor)
 
   ```csharp
   public record PositionalRecordType(string Name, double Value);
@@ -128,5 +135,5 @@ public record RecordType
 
 - But for larger models, structs have some disadvantages:
   - structs don't support inheritance
-  - structs are less efficient at determining value equality (according to the docs!)
+  - structs are less efficient at determining value equality (see the docs)
   - structs can use more memory, since every instance has a complete copy of all its data
