@@ -80,6 +80,17 @@ namespace RecordTypes.Tests
         }
 
         [Fact]
+        public void BeEqualWhenNestedRecordsAreEqual()
+        {
+            var someRecord  = new PositionalRecordTypeWithNestedRecord(new PositionalRecordType(1, "one", 1.0));
+            var otherRecord = new PositionalRecordTypeWithNestedRecord(new PositionalRecordType(1, "one", 1.0));
+
+            Assert.Equal(someRecord, otherRecord);
+            Assert.NotSame(someRecord, otherRecord);
+            Assert.NotSame(someRecord.InternalRecord, otherRecord.InternalRecord);
+        }
+
+        [Fact]
         public void BeEqualWhenNestedReferenceTypesAreSame()
         {
             var moreValues = new List<int> { 1, 2, 3 };
