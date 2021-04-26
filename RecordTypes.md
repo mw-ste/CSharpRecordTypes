@@ -98,7 +98,7 @@ public record RecordType
 
   - equality comparison
   - `with` operator
-  - **primary constructor whose parameters match the positional parameters on the record declaration** (but no object initializer)
+  - **primary constructor whose parameters match the positional parameters on the record declaration** (but no object initializer, I didn't manage to create one)
   - **public `init` properties for all parameters on the record declaration**
   - **property deconstruction**
   - protected copy-constructor
