@@ -56,7 +56,7 @@
             Assert.Equal(someRecord, otherRecord);
             Assert.NotSame(someRecord, otherRecord);
         }
-        
+
         [Fact]
         public void OverloadToStringMethod()
         {
@@ -71,5 +71,33 @@
             //// deconstruct
             //var (id, name, value) = new RecordType(1, "one", 1.1).ToString();
         }
+
+        #region with mutable data
+
+        [Fact]
+        public void HaveCollectionInitializerAlsoForMutableData()
+        {
+            //when default constructor is specified!
+
+            var _ = new RecordTypeWithMutableData
+            {
+                Id = 1,
+                Name = "one",
+                Value = 1.0,
+                Index = 5
+            };
+        }
+
+        [Fact]
+        public void BeCopyableWithNewValueForMutableData()
+        {
+            var someRecord = new RecordTypeWithMutableData(1, "one", 1.0, 32);
+            var otherRecord = someRecord with { Index = 42 };
+
+            Assert.Equal(42, otherRecord.Index);
+            Assert.NotEqual(someRecord, otherRecord);
+        }
+
+        #endregion
     }
 }

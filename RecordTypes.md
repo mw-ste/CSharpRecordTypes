@@ -77,9 +77,9 @@ Also:
 
 - defined like a `class`, but with the `record` keyword
 - create immutable properties using `init` setter
-- if needed: create mutable properties :scream:
+- _if needed: create mutable properties_ :scream:
 - what you get for free:
-  - collection initialization (but no constructor)
+  - collection initialization (but no constructor, constructor can be created manually)
   - equality comparison
   - `with` operator
 
@@ -95,6 +95,7 @@ public record RecordType
 
 - shorthand for creating records
 - what you get for free:
+
   - equality comparison
   - `with` operator
   - **primary constructor whose parameters match the positional parameters on the record declaration** (but no object initializer)

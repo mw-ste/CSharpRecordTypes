@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace RecordTypes.Tests
 {
     using Xunit;
-    
+
     public class PositionalRecordTypeShould
     {
         [Fact]
@@ -30,7 +30,7 @@ namespace RecordTypes.Tests
         public void NotBeEqualForInheritedTypes()
         {
             PositionalRecordType someRecord = new PositionalRecordType(1, "one", 1.1);
-            PositionalRecordType otherRecord = new PositionalRecordTypeWithInheritance(1, "one", 1.1, new List<int> { 1, 2, 3 });
+            PositionalRecordType otherRecord = new PositionalRecordTypeWithNestedReferenceType(1, "one", 1.1, new List<int> { 1, 2, 3 });
 
             Assert.NotEqual(someRecord, otherRecord);
         }
@@ -58,7 +58,7 @@ namespace RecordTypes.Tests
         [Fact]
         public void BeCarefulAboutNestedReferenceTypes()
         {
-            var someRecord = new PositionalRecordTypeWithInheritance(1, "one", 1.1, new List<int> { 1, 2, 3 });
+            var someRecord = new PositionalRecordTypeWithNestedReferenceType(1, "one", 1.1, new List<int> { 1, 2, 3 });
             var otherRecord = someRecord with { };
 
             Assert.NotSame(someRecord, otherRecord);
@@ -80,10 +80,20 @@ namespace RecordTypes.Tests
         }
 
         [Fact]
+        public void BeEqualWhenNestedReferenceTypesAreSame()
+        {
+            var moreValues = new List<int> { 1, 2, 3 };
+            var someRecord = new PositionalRecordTypeWithNestedReferenceType(1, "one", 1.1, moreValues);
+            var otherRecord = new PositionalRecordTypeWithNestedReferenceType(1, "one", 1.1, moreValues);
+
+            Assert.Equal(someRecord, otherRecord);
+        }
+
+        [Fact]
         public void NotBeEqualWhenNestedReferenceTypesAreDifferent()
         {
-            var someRecord  = new PositionalRecordTypeWithInheritance(1, "one", 1.1, new List<int> { 1, 2, 3 });
-            var otherRecord = new PositionalRecordTypeWithInheritance(1, "one", 1.1, new List<int> { 1, 2, 3 });
+            var someRecord  = new PositionalRecordTypeWithNestedReferenceType(1, "one", 1.1, new List<int> { 1, 2, 3 });
+            var otherRecord = new PositionalRecordTypeWithNestedReferenceType(1, "one", 1.1, new List<int> { 1, 2, 3 });
 
             Assert.NotEqual(someRecord, otherRecord);
         }
@@ -96,7 +106,7 @@ namespace RecordTypes.Tests
             const double expected = 1.0;
 
             var (id, name, value) = new PositionalRecordType(expectedId, expectedName, expected);
-            
+
             Assert.Equal(expectedId, id);
             Assert.Equal(expectedName, name);
             Assert.Equal(expected, value);
@@ -108,6 +118,14 @@ namespace RecordTypes.Tests
             var recordAsString = new PositionalRecordType(1, "one", 1.1).ToString();
 
             Assert.Equal("PositionalRecordType { Id = 1, Name = one, Value = 1.1 }", recordAsString);
+        }
+
+        [Fact]
+        public void HaveMethods()
+        {
+            var someRecord = new PositionalRecordTypeWithMethod(1.1);
+
+            someRecord.DoStuff();
         }
 
         [Fact]
