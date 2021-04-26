@@ -60,9 +60,13 @@
         [Fact]
         public void OverloadToStringMethod()
         {
-            var recordAsString = new RecordType(1, "one", 1.1).ToString();
+            var someRecord = new RecordType(1, "one", 1.1);
+            var expectedString = $"{nameof(RecordType)} {{ " +
+                                 $"{nameof(RecordType.Id)} = {someRecord.Id}, " +
+                                 $"{nameof(RecordType.Name)} = {someRecord.Name}, " +
+                                 $"{nameof(RecordType.Value)} = {someRecord.Value} }}";
 
-            Assert.Equal("RecordType { Id = 1, Name = one, Value = 1.1 }", recordAsString);
+            Assert.Equal(expectedString, someRecord.ToString());
         }
 
         [Fact]

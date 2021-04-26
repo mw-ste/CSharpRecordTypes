@@ -71,9 +71,11 @@ namespace RecordTypes.Tests
         [Fact]
         public void AlsoBeCarefulAboutNestedRecordTypes()
         {
+            // this is not such a big problem, since the nested record should be immutable!
+
             var internalRecord = new PositionalRecordType(1, "one", 1.0);
             var someRecord = new PositionalRecordTypeWithNestedRecord(internalRecord);
-            var otherRecord = someRecord with { };
+            var otherRecord = new PositionalRecordTypeWithNestedRecord(internalRecord);
 
             Assert.NotSame(someRecord, otherRecord);
             Assert.Same(someRecord.InternalRecord, otherRecord.InternalRecord);
@@ -126,9 +128,13 @@ namespace RecordTypes.Tests
         [Fact]
         public void OverloadToStringMethod()
         {
-            var recordAsString = new PositionalRecordType(1, "one", 1.1).ToString();
+            var someRecord = new PositionalRecordType(1, "one", 1.1);
+            var expectedString = $"{nameof(PositionalRecordType)} {{ " +
+                        $"{nameof(PositionalRecordType.Id)} = {someRecord.Id}, " +
+                        $"{nameof(PositionalRecordType.Name)} = {someRecord.Name}, " +
+                        $"{nameof(PositionalRecordType.Value)} = {someRecord.Value} }}";
 
-            Assert.Equal("PositionalRecordType { Id = 1, Name = one, Value = 1.1 }", recordAsString);
+            Assert.Equal(expectedString, someRecord.ToString());
         }
 
         [Fact]
