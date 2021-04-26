@@ -1,4 +1,4 @@
-﻿namespace record_types.tests
+﻿namespace RecordTypes.Tests
 {
     using Xunit;
 
@@ -7,7 +7,7 @@
         [Fact]
         public void HaveCollectionInitializer()
         {
-            //when default constructor is specified!
+            // only works when default constructor is specified!
 
             var _ = new ClassWithInit
             {
@@ -23,7 +23,7 @@
             var someRecord  = new ClassWithInit(1, "one", 1.0);
             var otherRecord = new ClassWithInit(1, "one", 1.0);
 
-            Assert.NotEqual(someRecord, otherRecord); //!!!
+            Assert.NotEqual(someRecord, otherRecord); // !!!
         }
 
         [Fact]
@@ -36,11 +36,11 @@
             //// deconstruct
             //var (id, name, value) = new ClassWithInit(1, "one", 1.1).ToString();
 
-            ////copy
+            //// copy with new value
             //var someRecord = new ClassWithInit(1, "one", 1.0);
             //var otherRecord = someRecord with { Id = 42 };
 
-            ////overload toString
+            //// overload toString
             //var recordAsString = new ClassWithInit(1, "one", 1.1).ToString();
             //Assert.Equal("ClassWithInit { Id = 1, Name = one, Value = 1.1 }", recordAsString);
         }

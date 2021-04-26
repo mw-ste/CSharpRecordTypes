@@ -1,4 +1,4 @@
-﻿namespace record_types.tests
+﻿namespace RecordTypes.Tests
 {
     using Xunit;
 

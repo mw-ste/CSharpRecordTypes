@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\record_types\record_types.csproj" />
+    <ProjectReference Include="..\RecordTypes\RecordTypes.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace record_types
+﻿namespace RecordTypes
 {
     public interface IDummyData
     {

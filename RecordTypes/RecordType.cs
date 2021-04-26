@@ -1,16 +1,16 @@
-﻿namespace record_types
+﻿namespace RecordTypes
 {
-    public class ClassWithInit : IDummyData
+    public record RecordType : IDummyData
     {
         public int Id { get; init; }
         public string Name { get; init; }
         public double Value { get; init; }
 
-        public ClassWithInit()
+        public RecordType()
         {
         }
 
-        public ClassWithInit(int id, string name, double value)
+        public RecordType(int id, string name, double value)
         {
             Id = id;
             Name = name;
