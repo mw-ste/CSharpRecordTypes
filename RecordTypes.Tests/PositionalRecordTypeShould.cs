@@ -82,6 +82,15 @@ namespace RecordTypes.Tests
         }
 
         [Fact]
+        public void BeEqualForGenericRecordTypes()
+        {
+            var someRecord = new GenericPositionalRecordType<string>("text");
+            var otherRecord = new GenericPositionalRecordType<string>("text");
+
+            Assert.Equal(someRecord, otherRecord);
+        }
+
+        [Fact]
         public void BeEqualWhenNestedRecordsAreEqual()
         {
             var someRecord  = new PositionalRecordTypeWithNestedRecord(new PositionalRecordType(1, "one", 1.0));

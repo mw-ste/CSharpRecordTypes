@@ -20,5 +20,7 @@
         }
     }
 
+    public record GenericPositionalRecordType<T>(T Data);
+
     #endregion
 }
