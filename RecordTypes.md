@@ -31,7 +31,6 @@ _as of April 2021, C#9 / .Net 5.0_
 - records have automatically generated value comparison
 - the generated comparison can be overwritten if needed
 - two variables of a record type are equal if:
-
   - the types match
   - and all property and field values match
     - values for value types
@@ -45,7 +44,6 @@ _as of April 2021, C#9 / .Net 5.0_
 - can also be used in regular classes and structs
 - supports data immutability
 - can only be set during object creation, e.g. in the constructor or object initializer
-
   ```csharp
   public int PropertyA { get; } // can only be set in the ctor
   public int PropertyB { get; private set; } // can only be set internally
@@ -55,7 +53,6 @@ _as of April 2021, C#9 / .Net 5.0_
 ### Non-destructive mutation using `with`
 
 - the `with` expressions make it easy to support non-destructive mutation
-
 - this allows to change values of the immutable records
 - thereby a new instance of the record will be created
   ```csharp
@@ -110,7 +107,6 @@ public record PositionalRecordType(string Name, double Value);
 
 - shorthand for creating records
 - what you get for free:
-
   - equality comparison
   - `with` operator
   - **primary constructor whose parameters match the positional parameters on the record declaration**
@@ -131,13 +127,10 @@ public record PositionalRecordType(string Name, double Value);
 - why not just use a `struct`?
 - `struct` can also be used to define data-centric types that provide value equality
 - `readonly` structs (C# 7.2) also provide immutability:
-
   ```csharp
   public readonly struct ReadonlyStruct {}
   ```
-
   https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/struct#readonly-struct
-
 - But for larger models, structs have some disadvantages:
   - structs don't support inheritance
   - structs are less efficient at determining value equality (see the docs)
