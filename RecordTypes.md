@@ -24,17 +24,17 @@ _as of April 2021, C#9 / .Net 5.0_
   - don't want to copy values
   - want to use reference variables
 
-### Non-destructive mutation using `with`
+### Equality
 
-- the `with` expressions make it easy to support non-destructive mutation
+- records have automatically generated value comparison
+- the generated comparison can be overwritten if needed
+- two variables of a record type are equal if:
 
-- this allows to change values of the immutable records
-- thereby a new instance of the record will be created
-  ```csharp
-  var newRecord = oldRecord with { Value = 42 };
-  ```
-- **be careful**: members, which are reference types, will be a shallow copy :exclamation:
-- this includes nested record types :exclamation:
+  - the types match
+  - and all property and field values match
+    - values for value types
+    - values for record types
+    - references for other reference types
 
 ### `init`-only property setters
 
@@ -49,6 +49,18 @@ _as of April 2021, C#9 / .Net 5.0_
   public int PropertyB { get; private set; } // can only be set internally
   public int PropertyC { get; init; } // can only be set during object creation
   ```
+
+### Non-destructive mutation using `with`
+
+- the `with` expressions make it easy to support non-destructive mutation
+
+- this allows to change values of the immutable records
+- thereby a new instance of the record will be created
+  ```csharp
+  var newRecord = oldRecord with { Value = 42 };
+  ```
+- **be careful**: members, which are reference types, will be a shallow copy :exclamation:
+- this includes nested record types :exclamation:
 
 ### Inheritance
 
@@ -67,27 +79,7 @@ Also:
 - there is no generic constraint that requires a type to be a record
   `public void Foo<T>() where T : record` :zap:
 
-### Equality
-
-- records have automatically generated value comparison
-- the generated comparison can be overwritten if needed
-- two variables of a record type are equal if:
-
-  - the types match
-  - and all property and field values match
-    - values for value types
-    - values for record types
-    - references for other reference types
-
 ## "Regular" record types
-
-- defined like a `class`, but with the `record` keyword
-- create immutable properties using `init` setter
-- _if needed: create mutable properties_ :scream:
-- what you get for free:
-  - collection initialization (but no constructor, constructor can be created manually)
-  - equality comparison
-  - `with` operator
 
 ```csharp
 public record RecordType
@@ -97,7 +89,19 @@ public record RecordType
 }
 ```
 
+- defined like a `class`, but with the `record` keyword
+- create immutable properties using `init` setter
+- _if needed: create mutable properties_ :scream:
+- what you get for free:
+  - collection initialization (but no constructor, constructor can be created manually)
+  - equality comparison
+  - `with` operator
+
 ## Positional record types
+
+```csharp
+public record PositionalRecordType(string Name, double Value);
+```
 
 - shorthand for creating records
 - what you get for free:
@@ -109,10 +113,6 @@ public record RecordType
   - **public `init` properties for all parameters on the record declaration**
   - **property deconstruction**
   - (protected copy-constructor)
-
-  ```csharp
-  public record PositionalRecordType(string Name, double Value);
-  ```
 
 # Appendix
 
