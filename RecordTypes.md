@@ -66,11 +66,13 @@ _as of April 2021, C#9 / .Net 5.0_
 
 ### The record type
 
-- records can be split into partials
 - records can be generic
+- records can be split into partials
 - records satisfy the class constraint
-- there is no generic constraint that requires a type to be a record
-  `public void Foo<T>() where T : record` :zap:
+- there is no generic constraint that requires a type to be a record :zap:
+  ```csharp
+  public void Foo<T>() where T : record // does not work
+  ```
 
 ### Inheritance
 
