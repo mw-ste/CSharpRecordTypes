@@ -64,22 +64,21 @@ _as of April 2021, C#9 / .Net 5.0_
 - **be careful**: members, which are reference types, will be a shallow copy :exclamation:
 - this includes nested record types :exclamation:
 
-### Inheritance
+### The record type
 
-- https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/
-
-- records support inheritance, but with some restrictions
-- records can inherit from other records and from interfaces
 - records can be split into partials
-
-- records can't inherit from classes :zap:
-- also classes can't inherit from records :zap:
-
-Also:
-
+- records can be generic
 - records satisfy the class constraint
 - there is no generic constraint that requires a type to be a record
   `public void Foo<T>() where T : record` :zap:
+
+### Inheritance
+
+- https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/
+- records support inheritance, but with some restrictions
+- records can inherit from other records and from interfaces
+- records can't inherit from classes :zap:
+- also classes can't inherit from records :zap:
 
 ## How do I create one?
 
