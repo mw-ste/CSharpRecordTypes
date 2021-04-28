@@ -24,6 +24,8 @@ _as of April 2021, C#9 / .Net 5.0_
   - don't want to copy values
   - want to use reference variables
 
+## How do they work?
+
 ### Equality
 
 - records have automatically generated value comparison
@@ -79,7 +81,9 @@ Also:
 - there is no generic constraint that requires a type to be a record
   `public void Foo<T>() where T : record` :zap:
 
-## "Regular" record types
+## How do I create one?
+
+### "Regular" record types
 
 ```csharp
 public record RecordType
@@ -97,7 +101,7 @@ public record RecordType
   - equality comparison
   - `with` operator
 
-## Positional record types
+### Positional record types
 
 ```csharp
 public record PositionalRecordType(string Name, double Value);
