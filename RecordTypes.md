@@ -95,7 +95,7 @@ public record RecordType
 - create immutable properties using `init` setter
 - _if needed: create mutable properties_ :scream:
 - what you get for free:
-  - collection initialization (but no constructor, constructor can be created manually)
+  - object initializer (but no constructor, constructor can be created manually)
   - equality comparison
   - `with` operator
   - human-readable string representation (uses current locale! https://stackoverflow.com/questions/67266121/c-sharp-record-types-how-to-localize-automatically-generated-tostring-method)
