@@ -12,7 +12,7 @@ _as of April 2021, C#9 / .Net 5.0_
 - the `record` keyword adds another way to define types (like `class`, `interface`, ...)
 - records are reference types
 - records are intended for supporting immutable data models
-- therefore records have compiler-generated members like overwritten equality comparison and `toString`, or non-destructive mutation
+- therefore records have compiler-generated members like overwritten equality comparison and `ToString`, or non-destructive mutation
 - the compiler-generated members will not change the state of the record
 
 ## When do I use them?
@@ -98,6 +98,7 @@ public record RecordType
   - collection initialization (but no constructor, constructor can be created manually)
   - equality comparison
   - `with` operator
+  - human-readable string representation (uses current locale! https://stackoverflow.com/questions/67266121/c-sharp-record-types-how-to-localize-automatically-generated-tostring-method)
 
 ### Positional record types
 
@@ -109,6 +110,7 @@ public record PositionalRecordType(string Name, double Value);
 - what you get for free:
   - equality comparison
   - `with` operator
+  - human-readable string representation (uses current locale!)
   - **primary constructor whose parameters match the positional parameters on the record declaration**
     (but no object initializer, I didn't manage to create one)
   - **public `init` properties for all parameters on the record declaration**

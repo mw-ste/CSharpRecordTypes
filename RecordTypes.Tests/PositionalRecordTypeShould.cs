@@ -147,6 +147,17 @@ namespace RecordTypes.Tests
         }
 
         [Fact]
+        public void PrintNestedRecordTypes()
+        {
+            var someRecord = new PositionalRecordType(1, "one", 1.1);
+            var someRecordWithNestedRecord = new PositionalRecordTypeWithNestedRecord(someRecord);
+            var expectedString = $"{nameof(PositionalRecordTypeWithNestedRecord)} {{ " +
+                                 $"{nameof(PositionalRecordTypeWithNestedRecord.InternalRecord)} = {someRecord} }}";
+
+            Assert.Equal(expectedString, someRecordWithNestedRecord.ToString());
+        }
+
+        [Fact]
         public void HaveMethods()
         {
             var someRecord = new PositionalRecordTypeWithMethod(1.1);
